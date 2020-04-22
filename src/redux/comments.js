@@ -11,10 +11,8 @@ export const Comments = (state = { errMess: null, comments:[]}, action) => {
             return {...state, errMess: action.payload};
             
         case ActionsType.ADD_COMMENT:
+            /*Итак, как вы можете видеть, когда вы оставляете комментарий, сначала вы отправите комментарий на сервер, и если комментарий успешно добавлен на сайт сервера и сервер отправляет обратно сообщение об успешной публикации комментария, только тогда вы добавите его в магазин редуксов. Таким образом, вы гарантируете, что комментарий пользователя изменение данных на сайте сервера, прежде чем даже добавить их в это редукционное хранилище.*/
             var comment = action.payload;
-            comment.id = state.comments.length;
-            comment.date = new Date().toISOString();
-            console.log("Comment: ", comment);
             return { ...state, comments: state.comments.concat(comment)};
 
         default:
